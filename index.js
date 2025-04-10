@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-const OPENAI_API_KEY = "sk-proj-xxxxx..."; // sua chave aqui
+const OPENAI_API_KEY = "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";
 
 app.post("/chat", async (req, res) => {
   const userText = req.body.text;
