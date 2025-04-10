@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // 🔐 Substitua aqui pela sua chave ou use variável de ambiente (mais seguro)
-const OPENAI_API_KEY = "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";
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 app.post("/chat", async (req, res) => {
   const userText = req.body.text;
