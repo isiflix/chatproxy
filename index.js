@@ -3,12 +3,13 @@ const cors = require("cors");
 const axios = require("axios");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
 app.use(cors());
 app.use(express.json());
 
-const OPENAI_API_KEY = "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";
+// 🔐 Substitua aqui pela sua chave ou use variável de ambiente (mais seguro)
+const OPENAI_API_KEY = "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";
 
 app.post("/chat", async (req, res) => {
   const userText = req.body.text;
@@ -21,7 +22,7 @@ app.post("/chat", async (req, res) => {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
-        model: "gpt-4o", // ou "gpt-3.5-turbo"
+        model: "gpt-4o",
         messages: [{ role: "user", content: userText }],
         temperature: 0.9
       },
@@ -35,6 +36,7 @@ app.post("/chat", async (req, res) => {
 
     res.json(response.data);
   } catch (error) {
+    console.error("Erro na OpenAI:", error.response?.data || error.message);
     res.status(500).json({
       error: "Erro ao se comunicar com a OpenAI",
       details: error.response?.data || error.message
